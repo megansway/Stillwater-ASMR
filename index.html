@@ -1,44 +1,585 @@
-<!doctype html><html lang="en"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#f5f0e7"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="Stillwater">
-<link rel="manifest" href="manifest.json"><title>Stillwater · Botanical Beauty Ritual</title>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f5f0e7">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Stillwater">
+<title>Stillwater — Botanical Beauty Ritual</title>
+
 <style>
-:root{--ivory:#f5f0e7;--paper:#fbf8f2;--sage:#a7b29a;--eucalyptus:#788873;--olive:#454b3c;--ink:#42463b;--muted:#858678;--line:#dcd6c9}
-*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:#e8e2d8;color:var(--ink);font-family:Georgia,'Times New Roman',serif}body{display:flex;justify-content:center;min-height:100dvh}button{font:inherit;touch-action:manipulation}
-.app{width:min(100%,460px);min-height:100dvh;background:var(--ivory);display:flex;flex-direction:column;position:relative;overflow:hidden}
-header{display:flex;align-items:center;justify-content:space-between;padding:calc(16px + env(safe-area-inset-top)) 20px 14px;border-bottom:1px solid #e1d9cc;background:#f8f4ec}.brand{display:flex;align-items:center;gap:10px}.mark{width:37px;height:37px;border:1px solid #a5ae98;border-radius:50%;display:grid;place-items:center;color:var(--eucalyptus);font-size:22px}.brandname{font-size:19px;letter-spacing:.12em}.tag{font:9px Arial,sans-serif;letter-spacing:.18em;color:#858678;text-transform:uppercase;margin-top:3px}.headbuttons{display:flex;gap:8px}.round{border:1px solid var(--line);background:#fbf8f2;border-radius:50%;width:38px;height:38px;color:var(--eucalyptus);font-size:16px}
-.intro{padding:17px 23px 13px}.eyebrow{font:10px Arial,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--eucalyptus)}h1{font-weight:normal;font-size:27px;line-height:1.1;margin:7px 0}.intro p{font:12px/1.5 Arial,sans-serif;color:#77796c;margin:0}
-.scene{position:relative;margin:0 13px;flex:1;min-height:320px;max-height:54dvh;border:1px solid #ded5c7;border-radius:23px;overflow:hidden;background:#e9e0d1;isolation:isolate;touch-action:pan-y}
-.sceneimage{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%;z-index:-2}.wash{position:absolute;inset:0;background:linear-gradient(180deg,#e9e0d100 58%,#e7dfd1b0 100%);pointer-events:none;z-index:-1}
-.clientlabel{position:absolute;top:14px;left:15px;background:#f8f3e8e8;border:1px solid #fff9;border-radius:30px;padding:8px 11px;font:9px Arial,sans-serif;letter-spacing:.15em;text-transform:uppercase;color:#666d5c}.badge{position:absolute;top:13px;right:13px;background:#f8f3e8e8;border-radius:30px;padding:8px 10px;font:10px Arial,sans-serif;color:#626b58}
-.touchhint{position:absolute;bottom:13px;left:50%;transform:translateX(-50%);white-space:nowrap;max-width:92%;overflow:hidden;text-overflow:ellipsis;background:#fbf8f0ed;border:1px solid #ded7c9;border-radius:99px;padding:10px 13px;font:10px Arial,sans-serif;color:#707566;box-shadow:0 4px 14px #454b3c12}#effects{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
-.tools{padding:15px 17px 0}.toolshead{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}.toolshead span:first-child{font-size:17px}.toolshead small{font:9px Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
-.toolrow{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:7px}.tool{border:1px solid #ded7ca;background:#faf7f0;border-radius:14px;padding:9px 2px 8px;min-height:74px;display:flex;align-items:center;flex-direction:column;gap:6px;color:#77796c}.tool.active{border-color:#89977e;background:#e6eadf;box-shadow:inset 0 0 0 1px #aab5a0;color:#485342}.tool .symbol{font-size:22px;height:25px}.tool .label{font:9px Arial,sans-serif}
-.progress{padding:13px 22px}.progline{display:flex;justify-content:space-between;font:10px Arial,sans-serif;color:#7a7d70;margin-bottom:7px}.track{height:5px;border-radius:9px;background:#e2dbcf;overflow:hidden}.fill{height:100%;width:0;background:linear-gradient(90deg,#a7b29a,#788873);transition:width .25s;border-radius:9px}
-footer{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:13px 21px calc(16px + env(safe-area-inset-bottom));background:#ebe4d8;border-top:1px solid #ddd4c6}.reset{border:0;background:transparent;color:#77796c;font:11px Arial,sans-serif;padding:10px 0}.primary{border:0;background:var(--olive);color:#f8f4eb;border-radius:99px;padding:13px 17px;font:11px Arial,sans-serif;min-width:155px}
-.toast{position:absolute;z-index:5;top:100px;left:50%;transform:translate(-50%,-8px);opacity:0;transition:.2s;background:#454b3c;color:#fbf8f2;border-radius:99px;padding:10px 14px;font:11px Arial,sans-serif;white-space:nowrap;pointer-events:none}.toast.show{opacity:1;transform:translate(-50%,0)}
-.finish{position:absolute;inset:0;z-index:9;display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:#f5f0e7f4;padding:28px}.finish.show{display:flex}.leafmark{font-size:40px;color:var(--eucalyptus)}.finish h2{font-weight:normal;font-size:29px;margin:8px 0}.finish p{font:12px/1.6 Arial,sans-serif;color:#77796c;max-width:260px}
-@media(min-width:600px){body{padding:20px}.app{min-height:min(900px,calc(100dvh - 40px));border:1px solid #d8d0c2;border-radius:28px;box-shadow:0 20px 60px #454b3c18}.scene{min-height:350px;max-height:52dvh}}@media(max-height:760px){.intro{padding-top:11px;padding-bottom:9px}.scene{min-height:260px;max-height:42dvh}.tools{padding-top:10px}.tool{min-height:65px}.progress{padding-top:10px;padding-bottom:10px}}
-</style></head><body><main class="app">
-<header><div class="brand"><div class="mark">❧</div><div><div class="brandname">STILLWATER</div><div class="tag">Botanical beauty ritual</div></div></div><div class="headbuttons"><button class="round" id="sound" aria-label="Toggle sound">♫</button><button class="round" id="help" aria-label="Instructions">i</button></div></header>
-<section class="intro"><div class="eyebrow">Ritual 01 · Skin renewal</div><h1>A moment to unwind.</h1><p>Move slowly, follow the contours, and enjoy the little things.</p></section>
-<section class="scene" id="scene" aria-label="Interactive skincare treatment"><img class="sceneimage" src="assets/maya-treatment.jpg" alt="Maya relaxing during a botanical spa facial"><div class="wash"></div><div class="clientlabel">Your client · Maya</div><div class="badge" id="badge">Cleanse · 0%</div><svg id="effects" aria-hidden="true"></svg><div class="touchhint" id="hint">Choose a tool, then glide gently over the face</div></section>
-<section class="tools"><div class="toolshead"><span>Your treatment tools</span><small>Step 1 of 3</small></div><div class="toolrow">
-<button class="tool active" data-tool="cotton"><span class="symbol">◉</span><span class="label">Cotton pad</span></button><button class="tool" data-tool="cleanser"><span class="symbol">♧</span><span class="label">Cleanser</span></button><button class="tool" data-tool="serum"><span class="symbol">♢</span><span class="label">Serum</span></button><button class="tool" data-tool="brush"><span class="symbol">✧</span><span class="label">Face brush</span></button><button class="tool" data-tool="roller"><span class="symbol">❋</span><span class="label">Roller</span></button></div></section>
-<section class="progress"><div class="progline"><span id="status">Your ritual is ready</span><span id="pct">0%</span></div><div class="track"><div class="fill" id="fill"></div></div></section>
-<footer><button class="reset" id="reset">↺ &nbsp; Start over</button><button class="primary" id="next">Begin cleansing &nbsp; →</button></footer><div class="toast" id="toast"></div>
-<div class="finish" id="finish"><div class="leafmark">❧</div><div class="eyebrow">Ritual complete</div><h2>Simply radiant.</h2><p>Maya's skin ritual is complete. Take a breath, enjoy the calm, and return whenever you need a quiet moment.</p><button class="primary" id="again">Enjoy another ritual ↗</button></div>
-</main><script>
-(()=>{const scene=document.querySelector('#scene'),effects=document.querySelector('#effects'),fill=document.querySelector('#fill'),pct=document.querySelector('#pct'),status=document.querySelector('#status'),hint=document.querySelector('#hint'),next=document.querySelector('#next'),badge=document.querySelector('#badge'),toast=document.querySelector('#toast');let selected='cotton',progress=0,dragging=false,soundOn=false,ctx=null,lastSound=0;
-const hints={cotton:'Glide gently over the face to lift away makeup',cleanser:'Spread a little cleanser with slow circles',serum:'Tap to apply serum, then smooth it over the skin',brush:'Sweep softly across the cheeks and forehead',roller:'Roll slowly along the cheeks for a cooling finish'};
-function choose(t){selected=t;document.querySelectorAll('.tool').forEach(b=>b.classList.toggle('active',b.dataset.tool===t));hint.textContent=hints[t];status.textContent=t==='serum'?'Tap gently to apply serum':progress?'Continue your gentle treatment':'Your ritual is ready'}document.querySelectorAll('.tool').forEach(b=>b.addEventListener('click',()=>choose(b.dataset.tool)));
-function tone(f=480,d=.05,v=.012){if(!soundOn)return;try{ctx ||= new(window.AudioContext||window.webkitAudioContext)();if(ctx.state==='suspended')ctx.resume();let o=ctx.createOscillator(),g=ctx.createGain();o.type='sine';o.frequency.value=f;g.gain.setValueAtTime(v,ctx.currentTime);g.gain.exponentialRampToValueAtTime(.001,ctx.currentTime+d);o.connect(g);g.connect(ctx.destination);o.start();o.stop(ctx.currentTime+d)}catch(e){}}
-function say(s){toast.textContent=s;toast.classList.add('show');clearTimeout(say.timer);say.timer=setTimeout(()=>toast.classList.remove('show'),1400)}document.querySelector('#sound').onclick=e=>{soundOn=!soundOn;e.currentTarget.textContent=soundOn?'♫':'♩';say(soundOn?'Gentle sounds enabled':'Sounds muted');if(soundOn)tone(620,.15,.025)};document.querySelector('#help').onclick=()=>say('Choose a tool and gently drag across the treatment area.');
-function pos(e){let r=scene.getBoundingClientRect();return{x:e.clientX-r.left,y:e.clientY-r.top}}function mark(p){let ns='http://www.w3.org/2000/svg',c=document.createElementNS(ns,'circle');c.setAttribute('cx',p.x);c.setAttribute('cy',p.y);c.setAttribute('r',selected==='roller'?17:selected==='brush'?12:selected==='serum'?7:15);c.setAttribute('fill',selected==='serum'?'#e5c88a':selected==='cleanser'?'#fff8e9':selected==='roller'?'#bfd4c8':selected==='brush'?'#c6cfb9':'#fffdf6');c.setAttribute('opacity','.58');c.setAttribute('stroke','#fffdf4');c.setAttribute('stroke-width','1.4');effects.appendChild(c);if(effects.children.length>100)effects.firstChild.remove()}
-function step(e){let p=pos(e);mark(p);progress=Math.min(100,progress+(selected==='cotton'?1.5:selected==='serum'?2.4:1.1));fill.style.width=progress+'%';pct.textContent=Math.round(progress)+'%';badge.textContent='Cleanse · '+Math.round(progress)+'%';status.textContent=progress<30?'Lifting away the day…':progress<70?'Skin is feeling refreshed…':progress<100?'A little more, nice and slow…':'Ritual complete';if(progress>=100){hint.textContent='Beautifully done. Your client is glowing.';next.textContent='See your results ✧'}let now=Date.now();if(now-lastSound>110){tone(selected==='roller'?260:selected==='brush'?390:selected==='serum'?700:500,.045,.008);lastSound=now}}
-scene.addEventListener('pointerdown',e=>{if(document.querySelector('#finish').classList.contains('show'))return;scene.setPointerCapture(e.pointerId);if(selected==='serum'){step(e);return}dragging=true;step(e)});scene.addEventListener('pointermove',e=>{if(dragging)step(e)});function stop(){dragging=false}scene.addEventListener('pointerup',stop);scene.addEventListener('pointercancel',stop);
-next.onclick=()=>{if(progress>=100){document.querySelector('#finish').classList.add('show');tone(660,.18,.03);setTimeout(()=>tone(820,.24,.025),150)}else say(selected==='serum'?'Tap the treatment area to apply serum':'Glide your tool gently over the face')};
-function reset(){progress=0;dragging=false;fill.style.width='0';pct.textContent='0%';status.textContent='Your ritual is ready';badge.textContent='Cleanse · 0%';hint.textContent='Choose a tool, then glide gently over the face';next.textContent='Begin cleansing →';effects.innerHTML='';document.querySelector('#finish').classList.remove('show');choose('cotton')}document.querySelector('#reset').onclick=reset;document.querySelector('#again').onclick=reset;
-new ResizeObserver(()=>{let r=scene.getBoundingClientRect();effects.setAttribute('viewBox',`0 0 ${r.width} ${r.height}`)}).observe(scene);if('serviceWorker'in navigator&&location.protocol.startsWith('http'))window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
+:root {
+  --cream: #f5f0e7;
+  --paper: #fbf8f2;
+  --sage: #a7b29a;
+  --green: #788873;
+  --ink: #454a3d;
+  --muted: #858678;
+  --line: #ded7ca;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: Georgia, "Times New Roman", serif;
+}
+button { font: inherit; cursor: pointer; touch-action: manipulation; }
+.app {
+  width: 100%;
+  max-width: 520px;
+  min-height: 100dvh;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: calc(17px + env(safe-area-inset-top)) 20px 15px;
+  border-bottom: 1px solid var(--line);
+  background: #f8f4ec;
+}
+.brand { display: flex; align-items: center; gap: 10px; }
+.logo {
+  width: 40px; height: 40px;
+  display: grid; place-items: center;
+  border: 1px solid var(--sage);
+  border-radius: 50%;
+  color: var(--green);
+  font-size: 25px;
+}
+.brand-name { font-size: 19px; letter-spacing: .12em; }
+.brand-sub {
+  margin-top: 4px;
+  font: 9px Arial, sans-serif;
+  letter-spacing: .17em;
+  color: var(--muted);
+}
+.round {
+  width: 39px; height: 39px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: var(--paper);
+  color: var(--green);
+}
+.intro { padding: 19px 23px 15px; }
+.eyebrow {
+  color: var(--green);
+  font: 10px Arial, sans-serif;
+  letter-spacing: .19em;
+  text-transform: uppercase;
+}
+h1 {
+  margin: 9px 0;
+  font-size: clamp(27px, 7vw, 35px);
+  font-weight: normal;
+  line-height: 1.13;
+}
+.intro p {
+  margin: 0;
+  color: #77796c;
+  font: 13px/1.55 Arial, sans-serif;
+}
+.scene {
+  position: relative;
+  height: clamp(340px, 47dvh, 510px);
+  margin: 0 14px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: #e9e0d1;
+  touch-action: none;
+}
+.portrait {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.client, .percentage {
+  position: absolute;
+  top: 13px;
+  z-index: 2;
+  padding: 10px 12px;
+  border: 1px solid #fff9;
+  border-radius: 30px;
+  background: #fbf8f0e8;
+  color: #656d5c;
+  font: 9px Arial, sans-serif;
+  letter-spacing: .12em;
+}
+.client { left: 12px; }
+.percentage { right: 12px; letter-spacing: 0; font-size: 11px; }
+.hint {
+  position: absolute;
+  bottom: 13px;
+  left: 50%;
+  z-index: 3;
+  width: max-content;
+  max-width: 92%;
+  transform: translateX(-50%);
+  padding: 12px 15px;
+  border: 1px solid var(--line);
+  border-radius: 30px;
+  background: #fbf8f0ed;
+  color: #707566;
+  text-align: center;
+  font: 11px/1.4 Arial, sans-serif;
+}
+#effects {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.tools { padding: 17px 17px 0; }
+.tools-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.tools-head span { font-size: 19px; }
+.tools-head small {
+  color: var(--muted);
+  font: 10px Arial, sans-serif;
+  letter-spacing: .12em;
+}
+.tool-row {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 7px;
+}
+.tool {
+  min-width: 0;
+  min-height: 78px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 7px 2px;
+  border: 1px solid var(--line);
+  border-radius: 15px;
+  background: var(--paper);
+  color: #77796c;
+}
+.tool.active {
+  border: 2px solid #89977e;
+  background: #e6eadf;
+  color: var(--ink);
+}
+.symbol { font-size: 23px; }
+.label { font: 10px Arial, sans-serif; }
+.progress { padding: 15px 22px; }
+.progress-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 9px;
+  color: #77796c;
+  font: 11px Arial, sans-serif;
+}
+.track {
+  height: 6px;
+  overflow: hidden;
+  border-radius: 10px;
+  background: #e2dbcf;
+}
+.fill {
+  width: 0;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--sage), var(--green));
+  transition: width .15s;
+}
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: auto;
+  padding: 16px 20px calc(17px + env(safe-area-inset-bottom));
+  border-top: 1px solid var(--line);
+  background: #ebe4d8;
+}
+.reset {
+  border: 0;
+  background: transparent;
+  color: #77796c;
+  font: 12px Arial, sans-serif;
+}
+.primary {
+  padding: 15px 18px;
+  border: 0;
+  border-radius: 40px;
+  background: var(--ink);
+  color: var(--paper);
+  font: 12px Arial, sans-serif;
+}
+.toast {
+  position: absolute;
+  top: 100px;
+  left: 50%;
+  z-index: 5;
+  max-width: 90%;
+  padding: 12px 16px;
+  transform: translateX(-50%);
+  border-radius: 30px;
+  background: var(--ink);
+  color: white;
+  font: 12px Arial, sans-serif;
+  text-align: center;
+}
+[hidden] { display: none !important; }
+@media (max-height: 740px) {
+  .intro { padding-top: 12px; padding-bottom: 10px; }
+  .scene { height: 37dvh; min-height: 245px; }
+  .tools { padding-top: 11px; }
+  .tool { min-height: 65px; }
+  .progress { padding-top: 10px; padding-bottom: 10px; }
+}
+</style>
+</head>
+
+<body>
+<main class="app">
+<header>
+  <div class="brand">
+    <div class="logo">❧</div>
+    <div>
+      <div class="brand-name">STILLWATER</div>
+      <div class="brand-sub">BOTANICAL BEAUTY RITUAL</div>
+    </div>
+  </div>
+  <button class="round" id="sound" aria-label="Toggle sounds">♫</button>
+</header>
+
+<section class="intro">
+  <div class="eyebrow">Ritual 01 · Skin renewal</div>
+  <h1>A moment to unwind.</h1>
+  <p>Move slowly, follow the contours, and enjoy the little things.</p>
+</section>
+
+<section class="scene" id="scene" aria-label="Maya's facial treatment">
+  <svg class="portrait" viewBox="0 0 360 440"
+       preserveAspectRatio="xMidYMid meet"
+       xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <radialGradient id="glow">
+        <stop stop-color="#f8f0df"/>
+        <stop offset="1" stop-color="#e9e0d1"/>
+      </radialGradient>
+      <linearGradient id="skin" x1="0" y1="0" x2="1" y2="1">
+        <stop stop-color="#f1c9ad"/>
+        <stop offset="1" stop-color="#dfa58e"/>
+      </linearGradient>
+      <linearGradient id="hair" x1="0" y1="0" x2="1" y2="0">
+        <stop stop-color="#392b27"/>
+        <stop offset=".5" stop-color="#5a4035"/>
+        <stop offset="1" stop-color="#302522"/>
+      </linearGradient>
+    </defs>
+
+    <rect width="360" height="440" fill="url(#glow)"/>
+    <g fill="none" stroke="#d8d0c1" opacity=".65">
+      <circle cx="180" cy="216" r="145"/>
+      <circle cx="180" cy="216" r="125"/>
+    </g>
+
+    <!-- Spa robe -->
+    <path d="M30 440 Q45 345 105 328 L255 328 Q315 350 330 440Z"
+          fill="#a7b29a"/>
+    <path d="M125 337 L180 390 L235 337 L257 440 L103 440Z"
+          fill="#f5f0e7"/>
+
+    <!-- Hair silhouette -->
+    <path d="M78 172 Q60 43 178 35 Q298 40 282 177
+             L270 358 Q225 386 180 384 Q125 385 89 358Z"
+          fill="url(#hair)"/>
+    <path d="M100 163 Q92 85 135 61 Q172 35 215 59
+             Q258 78 260 162 L251 277 Q245 316 224 344
+             Q261 292 263 220 L270 160 Q283 57 193 43
+             Q108 35 91 99Z" fill="#302522"/>
+
+    <!-- Ears -->
+    <ellipse cx="103" cy="205" rx="19" ry="28" fill="#dfa58e"/>
+    <ellipse cx="257" cy="205" rx="19" ry="28" fill="#dfa58e"/>
+
+    <!-- Face -->
+    <path d="M105 143 Q104 78 180 77 Q256 78 255 143
+             L245 238 Q232 290 180 310 Q128 290 115 238Z"
+          fill="url(#skin)"/>
+
+    <!-- Headband -->
+    <path d="M86 139 Q85 54 180 49 Q275 54 274 139
+             L252 151 Q246 82 180 79 Q114 82 108 151Z"
+          fill="#c5cebb" stroke="#8d9984" stroke-width="2"/>
+    <path d="M104 126 Q120 75 180 72 Q240 75 256 126"
+          fill="none" stroke="#f5f0e7" stroke-width="4"/>
+
+    <!-- Brows -->
+    <path d="M126 174 Q146 161 163 174"
+          fill="none" stroke="#705047" stroke-width="5" stroke-linecap="round"/>
+    <path d="M197 174 Q216 161 235 174"
+          fill="none" stroke="#705047" stroke-width="5" stroke-linecap="round"/>
+
+    <!-- Relaxed closed eyes -->
+    <path d="M124 191 Q145 207 165 191"
+          fill="none" stroke="#493630" stroke-width="3" stroke-linecap="round"/>
+    <path d="M195 191 Q215 207 236 191"
+          fill="none" stroke="#493630" stroke-width="3" stroke-linecap="round"/>
+    <path d="M135 198 l-4 5 M145 201 l-1 5 M225 198 l4 5 M215 201 l1 5"
+          stroke="#493630" stroke-width="2" stroke-linecap="round"/>
+
+    <!-- Blush -->
+    <ellipse cx="133" cy="224" rx="25" ry="15" fill="#d98f89" opacity=".35"/>
+    <ellipse cx="227" cy="224" rx="25" ry="15" fill="#d98f89" opacity=".35"/>
+
+    <!-- Nose -->
+    <path d="M181 195 L171 231 Q180 237 190 231"
+          fill="none" stroke="#c88f78" stroke-width="2.5" stroke-linecap="round"/>
+
+    <!-- Lips -->
+    <path d="M157 253 Q170 242 180 249 Q192 242 204 253
+             Q194 267 180 266 Q165 267 157 253Z"
+          fill="#ad6968"/>
+    <path d="M161 253 Q180 258 200 253"
+          fill="none" stroke="#e7aaa0" stroke-width="2"/>
+
+    <!-- Botanical ornament -->
+    <g transform="translate(47 47)" fill="#89987d" opacity=".85">
+      <path d="M0 20 Q20 0 34 16 Q19 34 0 20Z"/>
+      <path d="M12 28 Q9 12 21 4 Q28 18 12 28Z"/>
+      <path d="M5 29 Q-3 15 5 10 Q14 19 5 29Z"/>
+    </g>
+    <g transform="translate(282 323)" fill="#89987d" opacity=".65">
+      <path d="M0 20 Q20 0 34 16 Q19 34 0 20Z"/>
+      <path d="M12 28 Q9 12 21 4 Q28 18 12 28Z"/>
+    </g>
+  </svg>
+
+  <div class="client">YOUR CLIENT · MAYA</div>
+  <div class="percentage" id="percentage">Cleanse · 0%</div>
+  <svg id="effects" aria-hidden="true"></svg>
+  <div class="hint" id="hint">Choose a tool, then glide gently over the face</div>
+</section>
+
+<section class="tools">
+  <div class="tools-head">
+    <span>Your treatment tools</span>
+    <small>STEP 1 OF 3</small>
+  </div>
+  <div class="tool-row">
+    <button class="tool active" data-tool="cotton">
+      <span class="symbol">◉</span><span class="label">Cotton pad</span>
+    </button>
+    <button class="tool" data-tool="cleanser">
+      <span class="symbol">♧</span><span class="label">Cleanser</span>
+    </button>
+    <button class="tool" data-tool="serum">
+      <span class="symbol">♢</span><span class="label">Serum</span>
+    </button>
+    <button class="tool" data-tool="brush">
+      <span class="symbol">✧</span><span class="label">Face brush</span>
+    </button>
+    <button class="tool" data-tool="roller">
+      <span class="symbol">❋</span><span class="label">Roller</span>
+    </button>
+  </div>
+</section>
+
+<section class="progress">
+  <div class="progress-labels">
+    <span id="status">Your ritual is ready</span>
+    <span id="pct">0%</span>
+  </div>
+  <div class="track"><div class="fill" id="fill"></div></div>
+</section>
+
+<footer>
+  <button class="reset" id="reset">↺ &nbsp; Start over</button>
+  <button class="primary" id="next">Begin cleansing →</button>
+</footer>
+
+<div class="toast" id="toast" hidden></div>
+</main>
+
+<script>
+(() => {
+  const scene = document.querySelector("#scene");
+  const effects = document.querySelector("#effects");
+  const fill = document.querySelector("#fill");
+  const pct = document.querySelector("#pct");
+  const status = document.querySelector("#status");
+  const hint = document.querySelector("#hint");
+  const next = document.querySelector("#next");
+  const percentage = document.querySelector("#percentage");
+  const toast = document.querySelector("#toast");
+
+  let tool = "cotton";
+  let progress = 0;
+  let dragging = false;
+  let soundOn = false;
+  let audio;
+  let lastTone = 0;
+
+  const instructions = {
+    cotton: "Glide gently over the face to lift away makeup",
+    cleanser: "Spread a little cleanser using slow circles",
+    serum: "Tap gently to apply a little nourishing serum",
+    brush: "Sweep softly across the cheeks and forehead",
+    roller: "Roll slowly along the cheeks for a cooling finish"
+  };
+
+  function message(text) {
+    toast.textContent = text;
+    toast.hidden = false;
+    clearTimeout(message.timer);
+    message.timer = setTimeout(() => toast.hidden = true, 1700);
+  }
+
+  function chooseTool(name) {
+    tool = name;
+    document.querySelectorAll(".tool").forEach(button => {
+      button.classList.toggle("active", button.dataset.tool === name);
+    });
+    hint.textContent = instructions[name];
+  }
+
+  document.querySelectorAll(".tool").forEach(button => {
+    button.addEventListener("click", () => chooseTool(button.dataset.tool));
+  });
+
+  function tone(frequency = 440) {
+    if (!soundOn) return;
+    try {
+      audio ||= new (window.AudioContext || window.webkitAudioContext)();
+      if (audio.state === "suspended") audio.resume();
+      const oscillator = audio.createOscillator();
+      const gain = audio.createGain();
+      oscillator.type = "sine";
+      oscillator.frequency.value = frequency;
+      gain.gain.setValueAtTime(0.012, audio.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, audio.currentTime + 0.09);
+      oscillator.connect(gain);
+      gain.connect(audio.destination);
+      oscillator.start();
+      oscillator.stop(audio.currentTime + 0.09);
+    } catch (_) {}
+  }
+
+  document.querySelector("#sound").addEventListener("click", event => {
+    soundOn = !soundOn;
+    event.currentTarget.textContent = soundOn ? "♫" : "♩";
+    message(soundOn ? "Gentle tones enabled" : "Sounds muted");
+    tone(580);
+  });
+
+  function position(event) {
+    const rect = scene.getBoundingClientRect();
+    return { x: event.clientX - rect.left, y: event.clientY - rect.top };
+  }
+
+  function addEffect(point) {
+    const ns = "http://www.w3.org/2000/svg";
+    const circle = document.createElementNS(ns, "circle");
+    const sizes = { cotton: 15, cleanser: 19, serum: 7, brush: 11, roller: 17 };
+    const colors = {
+      cotton: "#fffdf6", cleanser: "#fff8e9", serum: "#e5c88a",
+      brush: "#c6cfb9", roller: "#bfd4c8"
+    };
+
+    circle.setAttribute("cx", point.x);
+    circle.setAttribute("cy", point.y);
+    circle.setAttribute("r", sizes[tool]);
+    circle.setAttribute("fill", colors[tool]);
+    circle.setAttribute("opacity", ".58");
+    circle.setAttribute("stroke", "#fffdf4");
+    circle.setAttribute("stroke-width", "1.4");
+    effects.appendChild(circle);
+
+    if (effects.children.length > 100) effects.firstElementChild.remove();
+  }
+
+  function apply(event) {
+    const point = position(event);
+    addEffect(point);
+
+    const amount = tool === "serum" ? 2.4 : tool === "cotton" ? 1.5 : 1.1;
+    progress = Math.min(100, progress + amount);
+
+    fill.style.width = progress + "%";
+    pct.textContent = Math.round(progress) + "%";
+    percentage.textContent = "Cleanse · " + Math.round(progress) + "%";
+
+    status.textContent =
+      progress < 30 ? "Lifting away the day…" :
+      progress < 70 ? "Skin is feeling refreshed…" :
+      progress < 100 ? "A little more, nice and slow…" :
+      "Ritual complete";
+
+    if (progress >= 100) {
+      hint.textContent = "Beautifully done. Your client is glowing.";
+      next.textContent = "See your results ✧";
+    }
+
+    if (Date.now() - lastTone > 120) {
+      tone(tool === "roller" ? 260 : tool === "serum" ? 650 : 420);
+      lastTone = Date.now();
+    }
+  }
+
+  scene.addEventListener("pointerdown", event => {
+    if (event.target.closest("button")) return;
+    scene.setPointerCapture(event.pointerId);
+    dragging = true;
+    apply(event);
+  });
+
+  scene.addEventListener("pointermove", event => {
+    if (dragging) apply(event);
+  });
+
+  scene.addEventListener("pointerup", () => dragging = false);
+  scene.addEventListener("pointercancel", () => dragging = false);
+
+  next.addEventListener("click", () => {
+    if (progress < 100) {
+      message("Glide your chosen tool gently over the treatment area");
+      return;
+    }
+    message("Maya's ritual is complete. Simply radiant. ✧");
+    tone(720);
+  });
+
+  document.querySelector("#reset").addEventListener("click", () => {
+    progress = 0;
+    dragging = false;
+    fill.style.width = "0%";
+    pct.textContent = "0%";
+    percentage.textContent = "Cleanse · 0%";
+    status.textContent = "Your ritual is ready";
+    hint.textContent = "Choose a tool, then glide gently over the face";
+    next.textContent = "Begin cleansing →";
+    effects.replaceChildren();
+    chooseTool("cotton");
+  });
+
+  function resizeEffects() {
+    const rect = scene.getBoundingClientRect();
+    effects.setAttribute("viewBox", `0 0 ${rect.width} ${rect.height}`);
+  }
+
+  new ResizeObserver(resizeEffects).observe(scene);
+  resizeEffects();
 })();
-</script></body></html>
+</script>
+</body>
+</html>
